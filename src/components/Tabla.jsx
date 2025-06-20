@@ -4,20 +4,21 @@ import TablaFila from "./TablaFila";
 const Tabla = ({ data, setEditarDatos, eliminarDatos }) => {
   return (
     <>
-      <h2>h2 de la tabla</h2>
+      <h2>Lista de gastos</h2>
       <table>
         <thead>
           <tr>
-            <th>
-              <h3>encabezado de la tabla</h3>
-            </th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Categoria</th>
+            <th>Acciones</th>
           </tr>
         </thead>
 
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td>Sin Datos</td>
+              <td colSpan={4}></td>
             </tr>
           ) : (
             data.map((el) => (

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 const ValorInicialDb = {
   id: null,
   monto: "",
+  categoria: "",
 };
 
 const Formulario = ({
@@ -36,9 +37,9 @@ const Formulario = ({
   //  Funcion que se ejecuta al presionar el boton submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.monto) {
+    if (!form.monto || !form.categoria) {
       e.preventDefault();
-      alert("Monto vacio: Añada un monto a su registro.");
+      alert("Monto vacio: Añada un monto a su registro y seleccione una categoria.");
       return;
     }
     if (form.id === null) {
@@ -59,13 +60,11 @@ const Formulario = ({
   // HTML:
   return (
     <div>
-      <h2>h2 de formulario</h2>
-      <form>
+      <h2>Registro de gastos</h2>
+      <form onSubmit={handleSubmit}>
         <article>
-          {" "}
-          {/* Input number */}
           <label>
-            Ingrese el valor
+            Ingrese el monto:
             <input
               type="number"
               name="monto"
@@ -73,6 +72,18 @@ const Formulario = ({
               onChange={handleChange}
               value={form.monto}
             />
+          </label>
+        </article>
+
+        <article>
+          <label>
+            Categoria:
+            <select name="categoria" value={form.categoria} onChange={handleChange}>
+              <option value="">Seleccione</option>
+              <option value="esencial">Esencial</option>
+              <option value="prescindible">Prescindible</option>
+              <option value="ahorro">Ahorro</option>
+            </select>
           </label>
         </article>
 

@@ -7,7 +7,8 @@ const TablaFila = ({ row, setEditarDatos, eliminarDatos }) => {
         <FechaActual />
       </td>
 
-      <td>{row.monto}</td>
+      <td>${row.monto}</td>
+      <td>{row.categoria}</td>
       <td>
         <button onClick={() => setEditarDatos(row)}>Editar</button>
         <button onClick={() => eliminarDatos(row.id)}>Eliminar</button>
