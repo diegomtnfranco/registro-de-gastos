@@ -11,6 +11,7 @@ const Tabla = ({ data, setEditarDatos, eliminarDatos }) => {
             <th>Fecha</th>
             <th>Monto</th>
             <th>Categoria</th>
+            <th>Nota</th>
             <th>Acciones</th>
           </tr>
         </thead>

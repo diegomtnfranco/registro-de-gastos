@@ -5,6 +5,7 @@ const ValorInicialDb = {
   id: null,
   monto: "",
   categoria: "",
+  nota: ""
 };
 
 const Formulario = ({
@@ -37,7 +38,7 @@ const Formulario = ({
   //  Funcion que se ejecuta al presionar el boton submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.monto || !form.categoria) {
+    if (!form.monto || !form.categoria || !form.nota || form.monto <= 0) {
       e.preventDefault();
       alert("Monto vacio: Añada un monto a su registro y seleccione una categoria.");
       return;
@@ -80,10 +81,23 @@ const Formulario = ({
             Categoria:
             <select name="categoria" value={form.categoria} onChange={handleChange}>
               <option value="">Seleccione</option>
-              <option value="esencial">Esencial</option>
-              <option value="prescindible">Prescindible</option>
-              <option value="ahorro">Ahorro</option>
+              <option value="Ingreso">Ingreso</option>
+              <option value="Esenciales">Esenciales</option>
+              <option value="Prescindibles">Prescindibles</option>
+              <option value="Ahorro">Ahorro</option>
             </select>
+          </label>
+        </article>
+
+        <article>
+          <label>
+            Nota:
+            <input
+              type="text"
+              name="nota"
+              min={"0"}
+              onChange={handleChange}
+              value={form.nota} />
           </label>
         </article>
 

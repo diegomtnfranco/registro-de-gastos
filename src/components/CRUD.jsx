@@ -5,12 +5,7 @@ import Formulario from "./Formulario";
 import Tabla from "./Tabla";
 import Pantalla from "./Pantalla";
 
-const DatosInicialesDb = [
-    {
-        id: null,
-        monto: "0",
-    },
-];
+const DatosInicialesDb = [];
 
 const FormCrudApp = () => {
     const [db, setDataBase] = useState(DatosInicialesDb);
@@ -36,21 +31,30 @@ const FormCrudApp = () => {
     //Funcion para calcular el monto de cada una de las categorias
     const calcularTotales = () => {
 
-        const total = db.reduce((acc, el) => acc + parseFloat(el.monto), 0);
+        const ingresos = db
+            .filter((el) => el.categoria === 'Ingreso')
+            .reduce((acc, el) => acc + parseFloat(el.monto), 0);
+
         const esenciales = db
-            .filter((el) => el.categoria === 'esencial')
+            .filter((el) => el.categoria === 'Esenciales')
             .reduce((acc, el) => acc + parseFloat(el.monto), 0);
         const prescindibles = db
-            .filter((el) => el.categoria === 'prescindibles')
+            .filter((el) => el.categoria === 'Prescindibles')
             .reduce((acc, el) => acc + parseFloat(el.monto), 0);
         const ahorro = db
-            .filter((el) => el.categoria === 'ahorro')
+            .filter((el) => el.categoria === 'Ahorro')
             .reduce((acc, el) => acc + parseFloat(el.monto), 0);
 
-        return { total, esenciales, prescindibles, ahorro };
+        const total = ingresos - esenciales - prescindibles - ahorro;
+
+        const gastosEsenciales = ingresos * 0.5 - esenciales;
+        const gastosPrescindibles = ingresos * 0.3 - prescindibles;
+        const gastosAhorro = ingresos * 0.2 - ahorro;
+
+        return { total, gastosEsenciales, gastosPrescindibles, gastosAhorro };
     }
 
-    const { total, esenciales, prescindibles, ahorro } = calcularTotales();
+    const { total, gastosEsenciales, gastosPrescindibles, gastosAhorro } = calcularTotales();
 
 
     //Componentes a mostrar por pantalla con sus propiedades
@@ -58,11 +62,10 @@ const FormCrudApp = () => {
         <>
             <Pantalla
                 total={total}
-                escenciales={esenciales}
-                prescindibles={prescindibles}
-                ahorro={ahorro}
+                esenciales={gastosEsenciales}
+                prescindibles={gastosPrescindibles}
+                ahorro={gastosAhorro}
             />
-            <h2>Registro de Gastos</h2>
             <Formulario
                 CrearDatos={CrearDatos}
                 ActualizarDatos={ActualizarDatos}

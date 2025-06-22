@@ -9,6 +9,7 @@ const TablaFila = ({ row, setEditarDatos, eliminarDatos }) => {
 
       <td>${row.monto}</td>
       <td>{row.categoria}</td>
+      <td>{row.nota}</td>
       <td>
         <button onClick={() => setEditarDatos(row)}>Editar</button>
         <button onClick={() => eliminarDatos(row.id)}>Eliminar</button>
