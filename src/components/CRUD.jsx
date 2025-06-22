@@ -60,22 +60,25 @@ const FormCrudApp = () => {
     //Componentes a mostrar por pantalla con sus propiedades
     return (
         <>
-            <Pantalla
-                total={total}
-                esenciales={gastosEsenciales}
-                prescindibles={gastosPrescindibles}
-                ahorro={gastosAhorro}
-            />
-            <Formulario
-                CrearDatos={CrearDatos}
-                ActualizarDatos={ActualizarDatos}
-                setEditarDatos={setEditarDatos}
-                editarDatos={editarDatos}
-            />
-            <Tabla
-                data={db}
-                setEditarDatos={setEditarDatos}
-                eliminarDatos={EliminarDatos} />
+            <div className="container my-5">
+                <Pantalla
+                    total={total}
+                    esenciales={gastosEsenciales}
+                    prescindibles={gastosPrescindibles}
+                    ahorro={gastosAhorro}
+                />
+                <Formulario
+                    CrearDatos={CrearDatos}
+                    ActualizarDatos={ActualizarDatos}
+                    setEditarDatos={setEditarDatos}
+                    editarDatos={editarDatos}
+                />
+                <Tabla
+                    data={db}
+                    setEditarDatos={setEditarDatos}
+                    eliminarDatos={EliminarDatos} />
+            </div>
+
         </>
     );
 };

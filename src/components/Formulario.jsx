@@ -60,11 +60,11 @@ const Formulario = ({
 
   // HTML:
   return (
-    <div>
+    <div className="card p-4 mb-4">
       <h2>Registro de gastos</h2>
       <form onSubmit={handleSubmit}>
-        <article>
-          <label>
+        <div className="mb-3">
+          <label className="form-label">
             Ingrese el monto:
             <input
               type="number"
@@ -72,14 +72,15 @@ const Formulario = ({
               min={"0"}
               onChange={handleChange}
               value={form.monto}
+              className="form-control"
             />
           </label>
-        </article>
+        </div>
 
-        <article>
-          <label>
+        <div className="mb-3">
+          <label className="form-label">
             Categoria:
-            <select name="categoria" value={form.categoria} onChange={handleChange}>
+            <select name="categoria" value={form.categoria} onChange={handleChange} className="form-select">
               <option value="">Seleccione</option>
               <option value="Ingreso">Ingreso</option>
               <option value="Esenciales">Esenciales</option>
@@ -87,26 +88,27 @@ const Formulario = ({
               <option value="Ahorro">Ahorro</option>
             </select>
           </label>
-        </article>
+        </div>
 
-        <article>
-          <label>
+        <div className="mb-3">
+          <label className="form-label">
             Nota:
             <input
               type="text"
               name="nota"
               min={"0"}
               onChange={handleChange}
-              value={form.nota} />
+              value={form.nota}
+              className="form-control" />
           </label>
-        </article>
+        </div>
 
         <br />
 
-        <article>
-          <input type="submit" value="Enviar" onClick={handleSubmit} />
-          <input type="reset" value="Reset" onClick={handleReset} />
-        </article>
+        <div>
+          <input type="submit" value="Enviar" onClick={handleSubmit} className="btn btn-primary" />
+          <input type="reset" value="Reset" onClick={handleReset} className="btn btn-secondary" />
+        </div>
       </form>
     </div>
   );
