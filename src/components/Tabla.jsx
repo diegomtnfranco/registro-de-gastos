@@ -4,35 +4,38 @@ import TablaFila from "./TablaFila";
 const Tabla = ({ data, setEditarDatos, eliminarDatos }) => {
   return (
     <>
-      <h2>Lista de gastos</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Fecha</th>
-            <th>Monto</th>
-            <th>Categoria</th>
-            <th>Nota</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {data.length === 0 ? (
+      <div className="card p-4 mb-4">
+        <h2>Lista de gastos</h2>
+        <br />
+        <table>
+          <thead>
             <tr>
-              <td colSpan={4}></td>
+              <th>Fecha</th>
+              <th>Monto</th>
+              <th>Categoria</th>
+              <th>Nota</th>
+              <th>Acciones</th>
             </tr>
-          ) : (
-            data.map((el) => (
-              <TablaFila
-                key={el.id}
-                row={el}
-                setEditarDatos={setEditarDatos}
-                eliminarDatos={eliminarDatos}
-              />
-            ))
-          )}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {data.length === 0 ? (
+              <tr>
+                <td colSpan={4}></td>
+              </tr>
+            ) : (
+              data.map((el) => (
+                <TablaFila
+                  key={el.id}
+                  row={el}
+                  setEditarDatos={setEditarDatos}
+                  eliminarDatos={eliminarDatos}
+                />
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

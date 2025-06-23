@@ -5,9 +5,13 @@ import Formulario from "./Formulario";
 import Tabla from "./Tabla";
 import Pantalla from "./Pantalla";
 
-const DatosInicialesDb = [];
+const DatosInicialesDb = [
+];
 
 const FormCrudApp = () => {
+
+    //Hooks 
+
     const [db, setDataBase] = useState(DatosInicialesDb);
     const [editarDatos, setEditarDatos] = useState(null);
 

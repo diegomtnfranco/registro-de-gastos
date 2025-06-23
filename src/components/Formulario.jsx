@@ -61,7 +61,8 @@ const Formulario = ({
   // HTML:
   return (
     <div className="card p-4 mb-4">
-      <h2>Registro de gastos</h2>
+      <h2>Registro de gastos/ingresos</h2>
+      <br />
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
           <label className="form-label">

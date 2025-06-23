@@ -11,8 +11,10 @@ const TablaFila = ({ row, setEditarDatos, eliminarDatos }) => {
       <td>{row.categoria}</td>
       <td>{row.nota}</td>
       <td>
-        <button onClick={() => setEditarDatos(row)}>Editar</button>
-        <button onClick={() => eliminarDatos(row.id)}>Eliminar</button>
+
+        <button onClick={() => setEditarDatos(row)}>Edit</button>
+        <button type="button" class="btn-close" aria-label="Close" onClick={() => eliminarDatos(row.id)}></button>
+
       </td>
     </tr>
   );
