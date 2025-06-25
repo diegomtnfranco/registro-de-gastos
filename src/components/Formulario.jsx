@@ -5,7 +5,7 @@ const ValorInicialDb = {
   id: null,
   monto: "",
   categoria: "",
-  nota: ""
+  nota: "",
 };
 
 const Formulario = ({
@@ -38,9 +38,11 @@ const Formulario = ({
   //  Funcion que se ejecuta al presionar el boton submit
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!form.monto || !form.categoria || !form.nota || form.monto <= 0) {
+    if (!form.monto || !form.categoria || form.monto <= 0) {
       e.preventDefault();
-      alert("Monto vacio: Añada un monto a su registro y seleccione una categoria.");
+      alert(
+        "Monto vacio: Añada un monto a su registro y seleccione una categoria."
+      );
       return;
     }
     if (form.id === null) {
@@ -81,7 +83,12 @@ const Formulario = ({
         <div className="mb-3">
           <label className="form-label">
             Categoria:
-            <select name="categoria" value={form.categoria} onChange={handleChange} className="form-select">
+            <select
+              name="categoria"
+              value={form.categoria}
+              onChange={handleChange}
+              className="form-select"
+            >
               <option value="">Seleccione</option>
               <option value="Ingreso">Ingreso</option>
               <option value="Esenciales">Esenciales</option>
@@ -100,15 +107,26 @@ const Formulario = ({
               min={"0"}
               onChange={handleChange}
               value={form.nota}
-              className="form-control" />
+              className="form-control"
+            />
           </label>
         </div>
 
         <br />
 
         <div>
-          <input type="submit" value="Enviar" onClick={handleSubmit} className="btn btn-primary" />
-          <input type="reset" value="Reset" onClick={handleReset} className="btn btn-secondary" />
+          <input
+            type="submit"
+            value="Enviar"
+            onClick={handleSubmit}
+            className="btn btn-primary"
+          />
+          <input
+            type="reset"
+            value="Reset"
+            onClick={handleReset}
+            className="btn btn-secondary"
+          />
         </div>
       </form>
     </div>
