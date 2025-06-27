@@ -1,41 +1,99 @@
 // Este component es el component Padre de la app CRUD.
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 import Formulario from "./Formulario";
 import Tabla from "./Tabla";
 import Pantalla from "./Pantalla";
 import "../App.css";
 
+// Inicializa sin datos iniciales, si agregara algo, crea las categorias.
 const DatosInicialesDb = [];
 
 const FormCrudApp = () => {
   //Hooks
-
   const [db, setDataBase] = useState(DatosInicialesDb);
   const [editarDatos, setEditarDatos] = useState(null);
 
-  //Funciones CRUD
+  //Servidor localhost
+  useEffect(() => {
+    fetch("http://localhost:3001/registros")
+      .then((res) => res.json()) //res --> respuesta convertida en datos json
+      .then((data) => setDataBase(data)) //datos que se actualizan
+      .catch((err) => console.error("Error al cargar datos:", err)); //respuesta al haber un error en el catch
+  }, []);
 
-  const CrearDatos = (data) => {
-    data.id = Date.now();
-    setDataBase([...db, data]);
-  };
-  const ActualizarDatos = (data) => {
-    const DatosNuevos = db.map((el) => (el.id === data.id ? data : el));
-    setDataBase(DatosNuevos);
-    setEditarDatos(null);
-  };
+  //Funciones CRUD (con AJAX)
 
-  const EliminarDatos = (id) => {
-    const confirmar = confirm(
-      "Monto vacio: Añada un monto a su registro y seleccione una categoria."
-    );
+  const CrearDatos = async (data) => {
+    try {
+      // try engloba el codigo que puede fallar
+      const res = await fetch("http://localhost:3001/registros", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }, //ayuda al servidor json a recibir la informacion de react
+        body: JSON.stringify(data), // convierte la informacion de js a json
+      });
 
-    if (confirmar) {
-      const nuevaDb = db.filter((el) => el.id !== id);
-      setDataBase(nuevaDb);
+      const nuevo = await res.json();
+      setDataBase([...db, nuevo]);
+    } catch (error) {
+      //en caso que el codigo de "try" falle, muestra el catch
+      console.error("Error al crear el dato:", error);
     }
   };
+
+  const ActualizarDatos = async (data) => {
+    try {
+      const res = await fetch(`http://localhost:3001/registros/${data.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const actualizado = await res.json();
+      const nuevosDatos = db.map((el) =>
+        el.id === data.id ? actualizado : el
+      );
+      setDataBase(nuevosDatos);
+      setEditarDatos(null);
+    } catch (error) {
+      console.error("Error al actualizar el dato:", error);
+    }
+  };
+
+  const EliminarDatos = async (id) => {
+    const confirmar = confirm(
+      "¿Estás seguro de que deseas eliminar este registro?"
+    );
+    if (!confirmar) return;
+
+    try {
+      await fetch(`http://localhost:3001/registros/${id}`, {
+        method: "DELETE",
+      });
+
+      const nuevaDb = db.filter((el) => el.id !== id);
+      setDataBase(nuevaDb);
+    } catch (error) {
+      console.error("Error al eliminar el dato:", error);
+    }
+  };
+  //Funcion que limpia la pagina de los datos del json
+  useEffect(() => {
+    const limpiar = async () => {
+      const res = await fetch("http://localhost:3001/registros");
+      const data = await res.json();
+
+      for (const item of data) {
+        await fetch(`http://localhost:3001/registros/${item.id}`, {
+          method: "DELETE",
+        });
+      }
+
+      setDataBase([]);
+    };
+
+    limpiar();
+  }, []);
 
   //Funcion para calcular el monto de cada una de las categorias
   const calcularTotales = () => {

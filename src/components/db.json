@@ -1,0 +1,40 @@
+{
+  "registros": [
+    {
+      "id": null,
+      "monto": 23,
+      "categoria": "Ahorro",
+      "nota": "23"
+    },
+    {
+      "id": null,
+      "monto": 2323,
+      "categoria": "Ingreso",
+      "nota": "1332"
+    },
+    {
+      "id": null,
+      "monto": 2323,
+      "categoria": "Esenciales",
+      "nota": "433"
+    },
+    {
+      "id": null,
+      "monto": 232131,
+      "categoria": "Esenciales",
+      "nota": "1333"
+    },
+    {
+      "id": null,
+      "monto": 10000,
+      "categoria": "Ingreso",
+      "nota": "lala"
+    },
+    {
+      "id": null,
+      "monto": 123,
+      "categoria": "Ingreso",
+      "nota": "123"
+    }
+  ]
+}

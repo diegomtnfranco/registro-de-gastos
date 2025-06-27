@@ -1,6 +1,7 @@
 import FechaActual from "./Fecha";
 
 const TablaFila = ({ row, setEditarDatos, eliminarDatos }) => {
+  // console.log("ID a eliminar:", row.id);
   return (
     <tr>
       <td>
@@ -14,7 +15,7 @@ const TablaFila = ({ row, setEditarDatos, eliminarDatos }) => {
         <button onClick={() => setEditarDatos(row)}>Edit</button>
         <button
           type="button"
-          class="btn-close"
+          className="btn-close"
           aria-label="Close"
           onClick={() => eliminarDatos(row.id)}
         ></button>
@@ -22,5 +23,4 @@ const TablaFila = ({ row, setEditarDatos, eliminarDatos }) => {
     </tr>
   );
 };
-
 export default TablaFila;

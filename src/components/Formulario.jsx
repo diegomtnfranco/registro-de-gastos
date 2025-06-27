@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
+// Esta constante define los datos y valores
 const ValorInicialDb = {
   id: null,
   monto: "",
@@ -8,6 +9,7 @@ const ValorInicialDb = {
   nota: "",
 };
 
+// Esta constante llama a las funciones definidas en el CRUD.jsx para usarlas aquí.
 const Formulario = ({
   CrearDatos,
   ActualizarDatos,
@@ -16,6 +18,8 @@ const Formulario = ({
 }) => {
   const [form, setForm] = useState(ValorInicialDb);
 
+  //Cuando se inicializa, empezará con ValorInicialDb, y el efecto se ejecuta cada vez que
+  //se ejecute la funcion editarDatos.
   useEffect(() => {
     if (editarDatos) {
       setForm(editarDatos);
@@ -28,6 +32,7 @@ const Formulario = ({
   const handleChange = (e) => {
     setForm({
       ...form,
+      //Apunta al input del HTML por el name
       [e.target.name]:
         e.target.type === "number"
           ? parseFloat(e.target.value)
@@ -41,7 +46,7 @@ const Formulario = ({
     if (!form.monto || !form.categoria || form.monto <= 0) {
       e.preventDefault();
       alert(
-        "Monto vacio: Añada un monto a su registro y seleccione una categoria."
+        "Mensaje: Añada un monto a su registro y seleccione una categoria."
       );
       return;
     }
