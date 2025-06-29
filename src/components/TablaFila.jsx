@@ -11,14 +11,18 @@ const TablaFila = ({ row, setEditarDatos, eliminarDatos }) => {
       <td>${row.monto}</td>
       <td>{row.categoria}</td>
       <td>{row.nota}</td>
-      <td>
-        <button onClick={() => setEditarDatos(row)}>Edit</button>
+      <td className="boton_editar_eliminar">
+        <button onClick={() => setEditarDatos(row)}>
+          <i className="bi bi-pencil-square"></i>
+        </button>
         <button
           type="button"
-          className="btn-close"
+          className="close"
           aria-label="Close"
           onClick={() => eliminarDatos(row.id)}
-        ></button>
+        >
+          <i className="bi bi-x-square"></i>
+        </button>
       </td>
     </tr>
   );

@@ -40,3 +40,11 @@
 .read-the-docs {
   color: #888;
 }
+
+.boton_editar_eliminar{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 10vh;
+  
+}

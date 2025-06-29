@@ -77,23 +77,6 @@ const FormCrudApp = () => {
       console.error("Error al eliminar el dato:", error);
     }
   };
-  //Funcion que limpia la pagina de los datos del json
-  useEffect(() => {
-    const limpiar = async () => {
-      const res = await fetch("http://localhost:3001/registros");
-      const data = await res.json();
-
-      for (const item of data) {
-        await fetch(`http://localhost:3001/registros/${item.id}`, {
-          method: "DELETE",
-        });
-      }
-
-      setDataBase([]);
-    };
-
-    limpiar();
-  }, []);
 
   //Funcion para calcular el monto de cada una de las categorias
   const calcularTotales = () => {

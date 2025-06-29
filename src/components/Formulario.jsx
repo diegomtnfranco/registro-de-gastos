@@ -51,6 +51,8 @@ const Formulario = ({
       return;
     }
     if (form.id === null) {
+      delete form.id;
+
       CrearDatos(form);
     } else {
       ActualizarDatos(form);
