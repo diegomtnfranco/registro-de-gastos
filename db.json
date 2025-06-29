@@ -1,3 +1,10 @@
 {
-  "registros": []
+  "registros": [
+    {
+      "id": "6047",
+      "monto": 5000,
+      "categoria": "Ingreso",
+      "nota": "a"
+    }
+  ]
 }

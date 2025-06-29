@@ -6,8 +6,8 @@ const Pantalla = ({ total, esenciales, prescindibles, ahorro }) => {
         {/* Primera fila: Total */}
         <div className="row mb-3">
           <div className="col text-center bg-primary text-white p-3 rounded">
-            <h3>Balance Total</h3>
-            <p>${total}</p>
+            <h4>Balance Total</h4>
+            <h3>${total}</h3>
           </div>
         </div>
 
@@ -16,15 +16,15 @@ const Pantalla = ({ total, esenciales, prescindibles, ahorro }) => {
         <div className="row text-center">
           <div className="col bg-warning text-white p-1 rounded mx-2">
             <h4>Gastos Esenciales:</h4>
-            <p>${esenciales}</p>
+            <h3>${esenciales}</h3>
           </div>
           <div className="col bg-danger text-white p-1 rounded mx-2">
             <h4>Gastos Prescindibles:</h4>
-            <p>${prescindibles}</p>
+            <h3>${prescindibles}</h3>
           </div>
           <div className="col bg-success text-white p-1 rounded mx-2">
             <h4>Ahorro:</h4>
-            <p>${ahorro}</p>
+            <h3>${ahorro}</h3>
           </div>
         </div>
       </article >
